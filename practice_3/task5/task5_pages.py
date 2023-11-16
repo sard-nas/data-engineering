@@ -12,9 +12,7 @@ def handle_link(link: str) -> dict():
     result['link'] = product.find('div',attrs={'class': 'product-image'}).a['href']
     description = product.find('div',attrs={'class': 'description'}).p.get_text().split(' Грамм Состав: ')
     info, ingredients = product.find('div',attrs={'class': 'description'}).p.get_text().split('Состав: ')
-    result['ingredients'] = ingredients.replace('.', '').split(',')
-    for elem in result['ingredients']:
-        elem.strip()
+    result['ingredients'] = list(map(str.strip, ingredients.replace('.', '').split(',')))
     result['weight'] = int(info.split('Грамм')[0])
     result['size'] = int(info.split('Грамм')[1].replace('см', ''))
     result['price'] = int(product.find('span', attrs={'class': 'price'}).get_text().replace('руб.', ''))
