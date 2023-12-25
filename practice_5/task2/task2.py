@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import pymongo
 from bson.json_util import dumps, loads
 
 def read_data(filename):
@@ -64,40 +65,27 @@ def get_stat_by_column(collection, column_name, param):
 
 def get_max_salary_by_min_age(collection):
     query = [{
-                '$group': {
-                    '_id': '$age',
-                    'max_salary': {'$max': '$salary'}
+                '$sort': {
+                    'age': 1,
+                    'salary': -1
                 }
             },
-            {
-                '$group': {
-                    '_id': 'max salary by min age',
-                    'min_age': {'$min': '$_id'},
-                    'max_salary': {'$max': '$max_salary'}
-                }
-            }]
-    
+            {'$limit': 1}
+            ]
     cursor = collection.aggregate(query)
     result = list(cursor)
     with open('max_salary_by_min_age.json', 'w', encoding='utf-8') as file:
         file.write(dumps(result, ensure_ascii=False))
 
-
 def get_min_salary_by_max_age(collection):
     query = [{
-                '$group': {
-                    '_id': '$age',
-                    'min_salary': {'$min': '$salary'}
+                '$sort': {
+                    'age': -1,
+                    'salary': 1
                 }
             },
-            {
-                '$group': {
-                    '_id': 'min salary by max age',
-                    'max_age': {'$max': '$_id'},
-                    'min_salary': {'$min': '$min_salary'}
-                }
-            }]
-    
+            {'$limit': 1}
+            ]
     cursor = collection.aggregate(query)
     result = list(cursor)
     with open('min_salary_by_max_age.json', 'w', encoding='utf-8') as file:
