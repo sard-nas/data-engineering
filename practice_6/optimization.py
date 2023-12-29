@@ -1,8 +1,6 @@
 import pandas as pd
-import os
 import json
 from bson.json_util import dumps, loads
-import numpy as np
 
 def get_memory_stat(dataset, filename):
     memory_stat = dataset.memory_usage(deep=True)
@@ -51,32 +49,3 @@ def optimize_dataset(dataset):
     result[opt_int.columns] = opt_int
     result[opt_float.columns] = opt_float
     return result
-
-filename = "../data/game_logs.csv"
-filesize = os.path.getsize(filename)
-print(f'File size on disk = {filesize // 1024} KB')
-
-dataset = pd.read_csv(filename)
-os.makedirs('./results', exist_ok=True)
-get_memory_stat(dataset, 'results/memory_stat.json')
-optimized_dataset = optimize_dataset(dataset)
-get_memory_stat(optimized_dataset, 'results/memory_stat_optimized.json')
-
-column_types = {}
-use_columns = ['date', 'number_of_game', 'day_of_week',
-               'v_league', 'day_night', 'length_minutes',
-               'v_hits', 'v_doubles', 'attendance', 'v_errors']
-              
-for key in use_columns:
-    column_types[key] = optimized_dataset.dtypes[key]
-
-with open('dtypes.json', 'w', encoding='utf-8') as file:
-    file.write(json.dumps(column_types,  default=str))
-
-has_header = True
-for chunck in pd.read_csv(filename,
-                          usecols=lambda x: x in use_columns,
-                          dtype=column_types,
-                          chunksize=1000000):
-    chunck.to_csv('dataframe.csv', mode='a', header=has_header)
-    has_header = False

@@ -1,0 +1,1 @@
+{"AREA": "uint8", "AREA NAME": "category", "Status": "category", "Status Desc": "category", "Vict Age": "int64", "Vict Sex": "category", "Vict Descent": "category", "Rpt Dist No": "uint16", "Cross Street": "category", "Weapon Used Cd": "float32", "Weapon Desc": "category"}

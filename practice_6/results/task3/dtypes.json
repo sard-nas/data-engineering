@@ -1,0 +1,1 @@
+{"MONTH": "uint8", "DAY_OF_WEEK": "uint8", "FLIGHT_NUMBER": "uint16", "ORIGIN_AIRPORT": "category", "DESTINATION_AIRPORT": "category", "AIR_TIME": "float32", "SCHEDULED_TIME": "float32", "CANCELLED": "uint8", "WHEELS_ON": "float32", "TAXI_IN": "float32", "WEATHER_DELAY": "float32"}

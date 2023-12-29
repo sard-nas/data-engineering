@@ -1,0 +1,1 @@
+{"diameter": "float32", "albedo": "float32", "diameter_sigma": "float32", "name": "category", "class": "category", "H": "float32", "neo": "category", "per": "float64", "moid": "float32", "spkid": "uint32"}

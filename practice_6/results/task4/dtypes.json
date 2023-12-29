@@ -1,0 +1,1 @@
+{"employer_id": "float32", "salary_from": "float32", "salary_to": "float32", "type_name": "category", "accept_incomplete_resumes": "bool", "prof_classes_found": "category", "test_required": "category", "schedule_name": "category", "experience_name": "category", "address_city": "category", "employer_industries": "category"}

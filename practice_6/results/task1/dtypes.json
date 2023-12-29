@@ -1,0 +1,1 @@
+{"date": "uint32", "number_of_game": "uint8", "day_of_week": "category", "v_league": "category", "day_night": "category", "length_minutes": "float32", "v_hits": "float32", "v_doubles": "float32", "attendance": "float32", "v_errors": "float32"}
