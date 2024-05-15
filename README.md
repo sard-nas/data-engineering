@@ -48,3 +48,5 @@ __Задание 4__
 
 Построить различные типы графиков.
 
+Для построения графиков и диаграмм были использованы библиотеки [matplotlib](https://matplotlib.org/stable/index.html) и [seaborn](https://seaborn.pydata.org/tutorial.html)
+
